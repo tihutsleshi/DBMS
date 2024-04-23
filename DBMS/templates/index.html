@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Financial Advisor Dashboard</title>
+    </head>
+    <body>
+
+    <h2>Search User</h2>
+    <form action="/search" method="post">
+        <input type="text" name="data" placeholder="Enter Username">
+        <!-- Assuming "pass", "email", and "usertype" are static for simplicity -->
+        <input type="submit" value="Search User">
+    </form>
+
+    <h2>Add User</h2>
+    <form action="/add" method="post">
+        <input type="text" name="data" placeholder="Enter Username">
+        <!-- Assuming "pass", "email", and "usertype" are static for simplicity -->
+        <input type="submit" value="Add User">
+    </form>
+
+    <h2>Delete User</h2>
+    <form action="/delete" method="post">
+        <input type="text" name="username" placeholder="Enter Username to Delete">
+        <input type="submit" value="Delete User">
+    </form>
+
+    <h2>Update User Email</h2>
+    <form action="/update" method="post">
+        <input type="text" name="username" placeholder="Username">
+        <input type="email" name="new_email" placeholder="New Email">
+        <input type="submit" value="Update Email">
+    </form>
+
+    <h2>Loans List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Loan Type</th> <!-- Note: Showing passwords is generally a bad practice -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan[1] }}</td>
+                <td>{{ loan[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>User List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Password</th> <!-- Note: Showing passwords is generally a bad practice -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Financial Advisor Dashboard</title>
+    </head>
+    <body>
+
+    <h2>Search User</h2>
+    <form action="/search" method="post">
+        <input type="text" name="data" placeholder="Enter Username">
+        <!-- Assuming "pass", "email", and "usertype" are static for simplicity -->
+        <input type="submit" value="Search User">
+    </form>
+
+    <h2>Loans List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Loan Type</th> <!-- Note: Showing passwords is generally a bad practice -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for loan in loans %}
+            <tr>
+                <td>{{ loan[1] }}</td>
+                <td>{{ loan[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>Expenses List</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Loan Type</th> <!-- Note: Showing passwords is generally a bad practice -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr>
+                <td>{{ expense[1] }}</td>
+                <td>{{ expense[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
