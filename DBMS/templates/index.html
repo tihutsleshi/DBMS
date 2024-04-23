@@ -1,72 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Financial Advisor Dashboard</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <title>Financial Advisor Dashboard</title>
+    <style>
+        .form-container {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .forms {
+            flex-basis: 22%;
+            box-shadow: 0 0 10px #ccc;
+            padding: 20px;
+            margin: 10px;
+            background: #f9f9f9;
+        }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .username-link {
+            display: inline-block;
+            color: blue;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
 
-    <h2>Search User</h2>
-    <form action="/search" method="post">
-        <input type="text" name="data" placeholder="Enter Username">
-        <!-- Assuming "pass", "email", and "usertype" are static for simplicity -->
-        <input type="submit" value="Search User">
-    </form>
+    <script>
+        function togglePasswordVisibility(element) {
+            var x = document.getElementById(element);
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Your Clients</h2>
+    <div class="form-container">
+        <div class="forms">
 
-    <h2>Add User</h2>
-    <form action="/add" method="post">
-        <input type="text" name="data" placeholder="Enter Username">
-        <!-- Assuming "pass", "email", and "usertype" are static for simplicity -->
-        <input type="submit" value="Add User">
-    </form>
+        <form action="/add" method="post">
+            <input type="text" name="data" placeholder="Enter Username">
+            <input type="submit" value="Add User">
+        </form>
 
-    <h2>Delete User</h2>
-    <form action="/delete" method="post">
-        <input type="text" name="username" placeholder="Enter Username to Delete">
-        <input type="submit" value="Delete User">
-    </form>
+        <form action="/delete" method="post">
+            <input type="text" name="username" placeholder="Enter Username to Delete">
+            <input type="submit" value="Delete User">
+        </form>
 
-    <h2>Update User Email</h2>
-    <form action="/update" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="email" name="new_email" placeholder="New Email">
-        <input type="submit" value="Update Email">
-    </form>
+        <form action="/update" method="post">
+            <input type="text" name="username" placeholder="Username">
+            <input type="email" name="new_email" placeholder="New Email">
+            <input type="submit" value="Update Email">
+        </form>
+    </div>
+    </div>
 
-    <h2>Loans List</h2>
+    <div class="users-table">
+
+        <form action="/search" method="post">
+            <input type="text" name="data" placeholder="Enter Username">
+            <input type="submit" value="Search User">
+        </form>
     <table border="1">
         <thead>
             <tr>
                 <th>Username</th>
-                <th>Loan Type</th> <!-- Note: Showing passwords is generally a bad practice -->
-            </tr>
-        </thead>
-        <tbody>
-            {% for loan in loans %}
-            <tr>
-                <td>{{ loan[1] }}</td>
-                <td>{{ loan[2] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    <h2>User List</h2>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Username</th>
-                <th>Password</th> <!-- Note: Showing passwords is generally a bad practice -->
+                <th>Password (click to show)</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
             {% for user in users %}
             <tr>
-                <td>{{ user[0] }}</td>
-                <td>{{ user[1] }}</td>
+                <td>
+                    <form action="/search" method="post" style="display: inline;">
+                        <input type="hidden" name="data" value="{{ user[0] }}">
+                        <a href="javascript:;" onclick="this.parentNode.submit();" class="username-link">{{ user[0] }}</a>
+                    </form>
+                </td>
+                <td onclick="togglePasswordVisibility('password{{ loop.index }}')">
+                    <input type="password" id="password{{ loop.index }}" value="{{ user[1] }}" readonly style="border: none; background: transparent; cursor: pointer;">
+                </td>
+                <td>{{ user[2] }}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    </div>
+
 
 
 
