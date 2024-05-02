@@ -230,6 +230,38 @@
 </div>
 </div>
 
+<div id="myTransactionModal" class="modal">
+<div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="editForm" action="/editUserTransaction" method="post">
+        <input type="hidden" id="transactionID" name="transactionID">
+        <input type="hidden" id="username" name="username">
+        <label for="tDate">Date:</label>
+        <input type="text" id="tDate" name="date"><br><br>
+        <label for="tAmount">Amount:</label>
+        <input type="text" id="tAmount" name="amount"><br><br>
+        <label for="methodOfPayment">Method of Payment:</label>
+        <input type="text" id="methodOfPayment" name="methodOfPayment"><br><br>
+        <button type="submit">Edit Transaction</button>
+    </form>
+</div>
+</div>
+
+<div id="myIncomeModal" class="modal">
+<div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="editForm" action="/editUserIncome" method="post">
+        <input type="hidden" id="incomeID" name="incomeID">
+        <input type="hidden" id="username" name="username">
+        <label for="source">Source:</label>
+        <input type="text" id="source" name="source"><br><br>
+        <label for="iAmount">Amount:</label>
+        <input type="text" id="iAmount" name="iAmount"><br><br>
+        <button type="submit">Edit Income</button>
+    </form>
+</div>
+</div>
+
 
 
 <script>
@@ -275,11 +307,34 @@ function showBudgetModal(element) {
     bModal.style.display = "block";
 }
 
+function showTransactionModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var transactionID = row.getAttribute('data-transaction-id');
+    document.getElementById('transactionID').value = transactionID;
+    document.getElementById('tDate').value = cells[1].innerText;
+    document.getElementById('tAmount').value = cells[2].innerText;
+    document.getElementById('methodOfPayment').value = cells[3].innerText;
+    tModal.style.display = "block";
+}
+
+function showIncomeModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var incomeID = row.getAttribute('data-income-id');
+    document.getElementById('incomeID').value = incomeID;
+    document.getElementById('source').value = cells[1].innerText;
+    document.getElementById('iAmount').value = cells[2].innerText;
+    iModal.style.display = "block";
+}
+
 // Function to close the modal
 function closeModal() {
     modal.style.display = "none";
     eModal.style.display = "none";
     bModal.style.display = "none";
+    tModal.style.display = "none";
+    iModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
