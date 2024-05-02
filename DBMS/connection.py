@@ -6,7 +6,7 @@ app = Flask(__name__)
 config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '121922',
+    'password': 'password',
     'database': 'testDB'
 }
 
@@ -119,6 +119,21 @@ def editUserExpense():
     conn.commit()
     cursor.close()
     conn.close()
+    return redirect(url_for('search', username=username))
+
+@app.route('/editUserBudget', methods=['POST'])
+def editUserBudget():
+    budgetID = request.form['budgetID']
+    username = request.form['username']
+    total = request.form['total']
+    budgetCategory = request.form['budgetCategory']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE budget SET total = %s, budgetCategory = %s WHERE budgetID = %s", (total, budgetCategory, budgetID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print(username)
     return redirect(url_for('search', username=username))
 
 
