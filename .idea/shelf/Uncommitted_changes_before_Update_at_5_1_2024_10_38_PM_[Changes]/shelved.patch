@@ -1,0 +1,77 @@
+Index: DBMS/.idea/misc.xml
+===================================================================
+diff --git a/DBMS/.idea/misc.xml b/DBMS/.idea/misc.xml
+deleted file mode 100644
+--- a/DBMS/.idea/misc.xml	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
++++ /dev/null	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
+@@ -1,7 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="Black">
+-    <option name="sdkName" value="Python 3.12 (DBMS)" />
+-  </component>
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (DBMS)" project-jdk-type="Python SDK" />
+-</project>
+\ No newline at end of file
+Index: DBMS/.idea/DBMS.iml
+===================================================================
+diff --git a/DBMS/.idea/DBMS.iml b/DBMS/.idea/DBMS.iml
+deleted file mode 100644
+--- a/DBMS/.idea/DBMS.iml	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
++++ /dev/null	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<module type="PYTHON_MODULE" version="4">
+-  <component name="NewModuleRootManager">
+-    <content url="file://$MODULE_DIR$">
+-      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+-    </content>
+-    <orderEntry type="inheritedJdk" />
+-    <orderEntry type="sourceFolder" forTests="false" />
+-  </component>
+-</module>
+\ No newline at end of file
+Index: DBMS/.idea/sqldialects.xml
+===================================================================
+diff --git a/DBMS/.idea/sqldialects.xml b/DBMS/.idea/sqldialects.xml
+deleted file mode 100644
+--- a/DBMS/.idea/sqldialects.xml	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
++++ /dev/null	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="SqlDialectMappings">
+-    <file url="file://$PROJECT_DIR$/connection.py" dialect="GenericSQL" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: DBMS/.idea/inspectionProfiles/profiles_settings.xml
+===================================================================
+diff --git a/DBMS/.idea/inspectionProfiles/profiles_settings.xml b/DBMS/.idea/inspectionProfiles/profiles_settings.xml
+deleted file mode 100644
+--- a/DBMS/.idea/inspectionProfiles/profiles_settings.xml	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
++++ /dev/null	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
+@@ -1,6 +0,0 @@
+-<component name="InspectionProjectProfileManager">
+-  <settings>
+-    <option name="USE_PROJECT_PROFILE" value="false" />
+-    <version value="1.0" />
+-  </settings>
+-</component>
+\ No newline at end of file
+Index: DBMS/.idea/modules.xml
+===================================================================
+diff --git a/DBMS/.idea/modules.xml b/DBMS/.idea/modules.xml
+deleted file mode 100644
+--- a/DBMS/.idea/modules.xml	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
++++ /dev/null	(revision 8963d8e497021e4c2ab33d0767d2ef06ac35043d)
+@@ -1,8 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ProjectModuleManager">
+-    <modules>
+-      <module fileurl="file://$PROJECT_DIR$/.idea/DBMS.iml" filepath="$PROJECT_DIR$/.idea/DBMS.iml" />
+-    </modules>
+-  </component>
+-</project>
+\ No newline at end of file
