@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8fe2b938-3459-4ba0-b7cc-051819e190fa" name="Changes" comment="files">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DBMS/templates/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DBMS/templates/user_view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin_view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/DBMS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/DBMS.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBMS/connection.py" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS/connection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBMS/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBMS/templates/searchUser.html" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS/templates/searchUser.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBMS/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DBMS/templates/user_view.html" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS/templates/user_view.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +82,7 @@
       <workItem from="1713895991522" duration="1078000" />
       <workItem from="1714503733387" duration="13977000" />
       <workItem from="1714600792263" duration="5627000" />
-      <workItem from="1714611641471" duration="2606000" />
+      <workItem from="1714611641471" duration="3292000" />
     </task>
     <task id="LOCAL-00001" summary="ui changes">
       <option name="closed" value="true" />
@@ -109,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714617622613</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="files">
+      <option name="closed" value="true" />
+      <created>1714618589099</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714618589099</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
