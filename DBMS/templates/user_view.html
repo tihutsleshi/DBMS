@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Assistant</title>
+    <style>
+        /* CSS styles from the first HTML file */
+
+        /* Basic table styles */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Additional styles specific to the Financial Assistant */
+        h1 {
+            font-family: "Garamond", serif;
+        }
+        body {
+            background-color: white; /* Set background color to white */
+        }
+        h2 {
+            font-family: "Garamond", serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Financial Assistant</h1>
+    <h2>Welcome, {{username}}</h2>
+    <h2>Expenses</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ExpenseID</th>
+                <th>Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" value="Delete">
+    <input type="submit" value="Update">
+    <h2>Income</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>IncomeID</th>
+                <th>Source</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" value="Delete">
+    <input type="submit" value="Update">
+    <h2>Loans</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>LoanID</th>
+                <th>LoanType</th>
+                <th>LoanAmount</th>
+                <th>Interest</th>
+                <th>StartDate</th>
+                <th>EndDate</th>
+                <th>BalanceAmount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" value="Delete">
+    <input type="submit" value="Update">
+    <h2>Budget</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>BudgetID</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" value="Delete">
+    <input type="submit" value="Update">
+    <h2>Transactions</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>TransactionID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Add table rows with data here -->
+        </tbody>
+    </table>
+    <input type="submit" value="Add">
+    <input type="submit" value="Delete">
+    <input type="submit" value="Update">
+</body>
+</html>
