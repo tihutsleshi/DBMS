@@ -6,7 +6,7 @@ app = Flask(__name__)
 config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '121922',
+    'password': 'password',
     'database': 'testDB'
 }
 
@@ -200,6 +200,20 @@ def editUserIncome():
     conn.close()
     print(username)
     return redirect(url_for('search', username=username))
+
+@app.route('/create_user', methods=['POST'])
+def create_user():
+    new_username = request.form['new_username']
+    new_password = request.form['new_password']
+    new_email = request.form['new_email']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO users (username, password, email, userType) VALUES (%s, %s, %s, %s)",
+                   (new_username, new_password, new_email, "usertype"))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return render_template("login.html")
 
 
 
