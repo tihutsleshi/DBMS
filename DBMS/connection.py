@@ -6,7 +6,7 @@ app = Flask(__name__)
 config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'password',
+    'password': '121922',
     'database': 'testDB'
 }
 
@@ -105,6 +105,10 @@ def editUserLoan():
     cursor.close()
     conn.close()
     return redirect(url_for('search', username=username))
+
+
+
+
 
 
 if __name__ == '__main__':
