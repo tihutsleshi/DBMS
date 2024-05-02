@@ -39,7 +39,11 @@ def login():
             expenses = cursor.fetchall()
             cursor.execute("SELECT * FROM budget WHERE username = %s", (user[0],))
             budgets = cursor.fetchall()
-            return render_template("user_view.html", loans=loans, expenses=expenses, budgets=budgets)
+            cursor.execute("SELECT * FROM transaction WHERE username = %s", (user[0],))
+            transactions = cursor.fetchall()
+            cursor.execute("SELECT * FROM income WHERE username = %s", (user[0],))
+            incomes = cursor.fetchall()
+            return render_template("user_view.html", loans=loans, expenses=expenses, budgets=budgets, transactions=transactions, incomes=incomes)
         else:
             return render_template('index.html', users=users)
     else:
@@ -60,9 +64,13 @@ def search():
     expenses = cursor.fetchall()
     cursor.execute("SELECT * FROM budget WHERE username=%s", (username,))
     budgets = cursor.fetchall()
+    cursor.execute("SELECT * FROM transaction WHERE username = %s", (username,))
+    transactions = cursor.fetchall()
+    cursor.execute("SELECT * FROM income WHERE username = %s", (username,))
+    incomes = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('searchUser.html', loans=loans, expenses=expenses, budgets=budgets, username=username)
+    return render_template('searchUser.html', loans=loans, expenses=expenses, budgets=budgets, username=username, transactions=transactions, incomes=incomes)
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -156,6 +164,37 @@ def editUserBudget():
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
     cursor.execute("UPDATE budget SET total = %s, budgetCategory = %s WHERE budgetID = %s", (total, budgetCategory, budgetID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print(username)
+    return redirect(url_for('search', username=username))
+
+@app.route('/editUserTransaction', methods=['POST'])
+def editUserTransaction():
+    transactionID = request.form['transactionID']
+    username = request.form['username']
+    date = request.form['date']
+    amount = request.form['amount']
+    method = request.form['methodOfPayment']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE transaction SET date = %s, amount = %s, method = %s WHERE transactionID = %s", (date, amount, method, transactionID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print(username)
+    return redirect(url_for('search', username=username))
+
+@app.route('/editUserIncome', methods=['POST'])
+def editUserIncome():
+    incomeID = request.form['incomeID']
+    username = request.form['username']
+    source = request.form['source']
+    amount = request.form['iAmount']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE income SET source = %s, amount = %s WHERE incomeID = %s", (source, amount, incomeID))
     conn.commit()
     cursor.close()
     conn.close()
