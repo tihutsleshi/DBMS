@@ -106,6 +106,21 @@ def editUserLoan():
     conn.close()
     return redirect(url_for('search', username=username))
 
+@app.route('/editUserExpense', methods=['POST'])
+def editUserExpense():
+    expenseID = request.form['expenseID']
+    date = request.form['date']
+    category = request.form['category']
+    amount = request.form['amount']
+    username = request.form['username']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE expenses SET date = %s, amount = %s, expenseCategory = %s WHERE expenseID = %s", (date, amount, category, expenseID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect(url_for('search', username=username))
+
 
 if __name__ == '__main__':
     app.run(debug=True)

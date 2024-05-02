@@ -96,6 +96,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th> </th>
                 <th>Date</th>
                 <th>Category</th>
                 <th>Amount</th><!-- Note: Showing passwords is generally a bad practice -->
@@ -103,7 +104,8 @@
         </thead>
         <tbody>
             {% for expense in expenses %}
-            <tr>
+            <tr data-expense-id="{{ expense[0] }}" data-expense-user="{{ expense[1] }}">
+                <td><i class="fas fa-pencil-alt" onclick="showExpenseModal(this)"></i></td>
                 <td>{{ expense[2] }}</td>
                 <td>{{ expense[4] }}</td>
                 <td>{{ expense[3] }}</td>
@@ -151,9 +153,27 @@
     </div>
 </div>
 
+<div id="myExpenseModal" class="modal">
+<div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="editForm" action="/editUserExpense" method="post">
+        <input type="hidden" id="expenseID" name="expenseID">
+        <input type="hidden" id="username" name="username">
+        <label for="username">Date:</label>
+        <input type="text" id="date" name="date"><br><br>
+        <label for="loanType">Category:</label>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="loanAmount">Amount:</label>
+        <input type="text" id="amount" name="amount"><br><br>
+        <button type="submit">Edit Expense</button>
+    </form>
+</div>
+</div>
+
 <script>
 // Get the modal
 var modal = document.getElementById("myModal");
+var eModal = document.getElementById("myExpenseModal")
 
 // Function to open the modal and populate it
 function showModal(element) {
@@ -169,9 +189,22 @@ function showModal(element) {
     modal.style.display = "block";
 }
 
+function showExpenseModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var expenseID = row.getAttribute('data-expense-id');
+    document.getElementById('expenseID').value = expenseID;
+    document.getElementById('date').value = cells[1].innerText;
+    document.getElementById('username').value = row.getAttribute('data-expense-user');
+    document.getElementById('category').value = cells[2].innerText;
+    document.getElementById('amount').value = cells[3].innerText;
+    eModal.style.display = "block";
+}
+
 // Function to close the modal
 function closeModal() {
     modal.style.display = "none";
+    eModal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
