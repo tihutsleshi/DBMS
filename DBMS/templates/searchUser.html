@@ -136,41 +136,40 @@
     </table>
 
     <h2>Expenses List</h2>
-<table border="1" id="expensesTable">
-    <thead>
-        <tr>
-            <th> </th>
-            <th>Username</th>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Category</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for expense in expenses %}
-        <tr data-expense-id="{{ expense[0] }}">
-            <td><i class="fas fa-pencil-alt" onclick="showExpenseModal(this)"></i></td>
-            <td>{{ expense[1] }}</td>
-            <td>{{ expense[2] }}</td>
-            <td>{{ expense[3] }}</td>
-            <td>{{ expense[4] }}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+    <table border="1">
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Amount</th><!-- Note: Showing passwords is generally a bad practice -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense in expenses %}
+            <tr data-expense-id="{{ expense[0] }}" data-expense-user="{{ expense[1] }}">
+                <td><i class="fas fa-pencil-alt" onclick="showExpenseModal(this)"></i></td>
+                <td>{{ expense[2] }}</td>
+                <td>{{ expense[4] }}</td>
+                <td>{{ expense[3] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <h2>Budget List</h2>
     <table border="1">
         <thead>
             <tr>
+                <th> </th>
                 <th>Budget Category</th>
                 <th>Budget Amount</th> <!-- Note: Showing passwords is generally a bad practice -->
             </tr>
         </thead>
         <tbody>
             {% for budget in budgets %}
-            <tr>
+            <tr data-budget-id="{{ budget[0] }}" data-budget-user="{{ budget[1] }}">
+                <td><i class="fas fa-pencil-alt" onclick="showBudgetModal(this)"></i></td>
                 <td>{{ budget[3] }}</td>
                 <td>{{ budget[2] }}</td>
             </tr>
@@ -199,7 +198,97 @@
     </div>
 </div>
 
+<div id="myExpenseModal" class="modal">
+<div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="editForm" action="/editUserExpense" method="post">
+        <input type="hidden" id="expenseID" name="expenseID">
+        <input type="hidden" id="username" name="username">
+        <label for="username">Date:</label>
+        <input type="text" id="date" name="date"><br><br>
+        <label for="loanType">Category:</label>
+        <input type="text" id="category" name="category"><br><br>
+        <label for="loanAmount">Amount:</label>
+        <input type="text" id="amount" name="amount"><br><br>
+        <button type="submit">Edit Expense</button>
+    </form>
+</div>
+</div>
 
+<div id="myBudgetModal" class="modal">
+<div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <form id="editForm" action="/editUserBudget" method="post">
+        <input type="hidden" id="budgetID" name="budgetID">
+        <input type="hidden" id="username" name="username">
+        <label for="budgetCategory">Budget Category:</label>
+        <input type="text" id="budgetCategory" name="budgetCategory"><br><br>
+        <label for="total">Budget Amount:</label>
+        <input type="text" id="total" name="total"><br><br>
+        <button type="submit">Edit Budget</button>
+    </form>
+</div>
+</div>
+
+
+
+<script>
+// Get the modal
+var modal = document.getElementById("myModal");
+var eModal = document.getElementById("myExpenseModal")
+var bModal = document.getElementById("myBudgetModal")
+
+// Function to open the modal and populate it
+function showModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var loanID = row.getAttribute('data-loan-id');
+    document.getElementById('loanID').value = loanID;
+    document.getElementById('username').value = cells[1].innerText;
+    document.getElementById('loanType').value = cells[2].innerText;
+    document.getElementById('loanAmount').value = cells[6].innerText;
+    document.getElementById('interest').value = cells[5].innerText;
+    document.getElementById('balanceRemaining').value = cells[7].innerText;
+    modal.style.display = "block";
+}
+
+function showExpenseModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var expenseID = row.getAttribute('data-expense-id');
+    document.getElementById('expenseID').value = expenseID;
+    document.getElementById('date').value = cells[1].innerText;
+    document.getElementById('username').value = row.getAttribute('data-expense-user');
+    document.getElementById('category').value = cells[2].innerText;
+    document.getElementById('amount').value = cells[3].innerText;
+    eModal.style.display = "block";
+}
+
+function showBudgetModal(element) {
+    var row = element.parentNode.parentNode;
+    var cells = row.getElementsByTagName('td');
+    var budgetID = row.getAttribute('data-expense-id');
+    document.getElementById('budgetID').value = budgetID;
+    document.getElementById('budgetCategory').value = cells[1].innerText;
+    document.getElementById('username').value = row.getAttribute('data-expense-user');
+    document.getElementById('total').value = cells[2].innerText;
+    bModal.style.display = "block";
+}
+
+// Function to close the modal
+function closeModal() {
+    modal.style.display = "none";
+    eModal.style.display = "none";
+    bModal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
 
 </body>
 </html>

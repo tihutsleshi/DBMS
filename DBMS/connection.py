@@ -6,19 +6,37 @@ app = Flask(__name__)
 config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '121922',
+    'password': 'password',
     'database': 'testDB'
 }
 
 @app.route('/')
 def index():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
-    cursor.execute("SELECT username, password, email FROM users WHERE userType='user'")
+    cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+    user = cursor.fetchone()
+    cursor.execute("SELECT * FROM users WHERE userType = 'user'")
     users = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('index.html', users=users)
+
+
+    if user:
+        user_type = user[3]
+        if user_type == "user":
+            return render_template("user_view.html")
+        else:
+            return render_template('index.html', users=users)
+    else:
+        return render_template("login.html")
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
@@ -104,6 +122,36 @@ def editUserLoan():
     conn.commit()
     cursor.close()
     conn.close()
+    return redirect(url_for('search', username=username))
+
+@app.route('/editUserExpense', methods=['POST'])
+def editUserExpense():
+    expenseID = request.form['expenseID']
+    date = request.form['date']
+    category = request.form['category']
+    amount = request.form['amount']
+    username = request.form['username']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE expenses SET date = %s, amount = %s, expenseCategory = %s WHERE expenseID = %s", (date, amount, category, expenseID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect(url_for('search', username=username))
+
+@app.route('/editUserBudget', methods=['POST'])
+def editUserBudget():
+    budgetID = request.form['budgetID']
+    username = request.form['username']
+    total = request.form['total']
+    budgetCategory = request.form['budgetCategory']
+    conn = mysql.connector.connect(**config)
+    cursor = conn.cursor()
+    cursor.execute("UPDATE budget SET total = %s, budgetCategory = %s WHERE budgetID = %s", (total, budgetCategory, budgetID))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    print(username)
     return redirect(url_for('search', username=username))
 
 
