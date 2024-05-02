@@ -12,13 +12,31 @@ config = {
 
 @app.route('/')
 def index():
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
     conn = mysql.connector.connect(**config)
     cursor = conn.cursor()
-    cursor.execute("SELECT username, password, email FROM users WHERE userType='user'")
+    cursor.execute("SELECT * FROM users WHERE username = %s AND password = %s", (username, password))
+    user = cursor.fetchone()
+    cursor.execute("SELECT * FROM users WHERE userType = 'user'")
     users = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('index.html', users=users)
+
+
+    if user:
+        user_type = user[3]
+        if user_type == "user":
+            return render_template("user_view.html")
+        else:
+            return render_template('index.html', users=users)
+    else:
+        return render_template("login.html")
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
