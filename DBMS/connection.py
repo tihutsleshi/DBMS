@@ -31,7 +31,15 @@ def login():
     if user:
         user_type = user[3]
         if user_type == "user":
-            return render_template("user_view.html")
+            conn = mysql.connector.connect(**config)
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM loans WHERE username = %s", (user[0],))
+            loans = cursor.fetchall()
+            cursor.execute("SELECT * FROM expenses WHERE username = %s", (user[0],))
+            expenses = cursor.fetchall()
+            cursor.execute("SELECT * FROM budget WHERE username = %s", (user[0],))
+            budgets = cursor.fetchall()
+            return render_template("user_view.html", loans=loans, expenses=expenses, budgets=budgets)
         else:
             return render_template('index.html', users=users)
     else:
